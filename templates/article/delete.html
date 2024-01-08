@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+{{ article.title }}
+{% endblock title %}
+
+
+{% block content %}
+    <h2>{{ article.title }}ni o'zirish.</h2>
+    <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+        {{ form|crispy }}
+
+        <button type="submit" class="btn btn-outline-delete mt-2">O'chirish</button>
+    </form>
+{% endblock content %}

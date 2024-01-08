@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+{{ article.title }}
+{% endblock title %}
+
+
+{% block content %}
+    <div class="mb-5">
+        <h2 class="mb-2">{{ article.title }}ni tahrirlash</h2>
+        <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.media }}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-outline-primary mt-2">Saqlash</button>
+        </form>
+    </div>
+{% endblock content %}
+
+
+
+
+

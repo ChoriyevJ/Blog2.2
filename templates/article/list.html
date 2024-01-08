@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Article list
+{% endblock title %}
+
+{% block content %}
+    <div class="">
+        {% for article in articles %}
+        <div class="card bg-warning mt-5 mb-5" style="width: 60rem;">
+            {% if article.photo %}
+                <img src="{{ article.photo.url }}"
+                     class="card-img-top shadow" alt="{{ article.title }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+                </h5>
+                <p class="card-text">{{ article.summary }}
+                    <a class="btn btn-link" href="{{ article.get_absolute_url }}">...batafsil</a>
+                </p>
+
+                <footer class="blockquote-footer">{{ article.author }}
+                    <cite title="Source Title">
+                        {{ article.created }}
+                    </cite>
+                </footer>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}
+

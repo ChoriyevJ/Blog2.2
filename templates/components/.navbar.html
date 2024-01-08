@@ -1,0 +1,57 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+    <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static 'img/pngwing.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+        <span class="ml-3" style="font-family: 'Brush Script MT'; font-size: 1.5rem; color: #8B0000; font-weight: bold;">Django.Py</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {% if request.user.is_authenticated %}
+        <div class="navbar-nav ml-auto">
+            {% comment %}
+            <li class="nav-item">
+                <a class="nav-link dropdown-toggle" href="#"
+                   id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    {{ request.user.username|title }}
+                </a>
+                <div class="dropdown-menu ml-auto"
+                     aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+            {% endcomment %}
+            <div class="dropdown">
+                <a class="nav-link btn-lg dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                    {{ request.user.username|title }}
+
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right mt-2"
+                     aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'article_create' %}">Yangi post yozish</a>
+                    <a class="dropdown-item" href="{% url 'password_change' %}">Kalit so'z almashtirish</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Chiqib Ketish</a>
+                </div>
+            </div>
+
+        </div>
+        {% else %}
+        <form class="form-inline ml-auto">
+            <a href="{% url 'login' %}" class="btn btn-outline-light mr-2">Kirish</a>
+            <a href="{% url 'signup' %}" class="btn btn-outline-primary">Ro'yxatdan o'tish</a>
+        </form>
+        {% endif %}
+    </div>
+</nav>
